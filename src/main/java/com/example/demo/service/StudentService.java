@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dao.StudentDAO;
 import com.example.demo.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +10,15 @@ import java.util.List;
 @Service
 public class StudentService {
 
-
+    @Autowired
+    private StudentDAO dao;
 
     public String addStudent(Student student) {
-       return "Student added";
+       dao.save(student);
+        return "Student added. Roll number is " + student.getRoll();
     }
 
     public String addStudents(List<Student> students) {
-
         return "All new Student has been added into Database";
     }
 
